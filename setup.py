@@ -9,7 +9,7 @@ setup(
     scripts=[],
     url='https://github.com/sujaymansingh/dudebot',
     license='LICENSE.txt',
-    description='Useful cricket-related stuff.',
+    description='A really simple framework for chatroom bots',
     long_description=open('README.md').read(),
     install_requires=[
         'jabberbot==0.15',
