@@ -13,7 +13,7 @@ class BotAI(object):
 class message_must_begin_with_prefix(object):
     """A simple decorator so that a bot AI can ignore all messages that don't
     begin with the given prefix.
-    That way you can have your dude bot only respond to messages that, for 
+    That way you can have your dude bot only respond to messages that, for
     example, begin with 'dude '.
     """
 
@@ -22,8 +22,9 @@ class message_must_begin_with_prefix(object):
 
     def __call__(self, func):
         def wrapped_func(botai, sender_nickname, message, *args, **kwargs):
-            if message.startswith(self.desired_prefix):
-                return func(botai, sender_nickname, message, *args, **kwargs)
+            startswith, suffix = extract_suffix(message, self.desired_prefix)
+            if startswith:
+                return func(botai, sender_nickname, suffix, *args, **kwargs)
             else:
                 return False, ''
         return wrapped_func
@@ -34,11 +35,33 @@ def message_must_begin_with_nickname(func):
     begin with the bot AI's nickname.
     """
     def wrapped_func(botai, sender_nickname, message, *args, **kwargs):
-        if message.startswith(botai.nickname):
-            return func(botai, sender_nickname, message, *args, **kwargs)
+        startswith, suffix = extract_suffix(message, botai.nickname)
+        if startswith:
+            return func(botai, sender_nickname, suffix, *args, **kwargs)
         else:
             return False, ''
     return wrapped_func
+
+
+def extract_suffix(message, prefix):
+    """Extract everything after the prefix. If message doesn't start with the
+    prefix then return (False, '') otherwise (True, suffix).
+    Note that it will remove any whitespace between the prefix and the rest of
+    the message.
+
+    >>> extract_suffix('hoohah test message', 'hoohah')
+    (True, 'test message')
+    >>> extract_suffix('hoohah test 2 ', 'something')
+    (False, '')
+    >>> extract_suffix('hoohah', 'hoohah')
+    (True, '')
+    """
+    if not message.startswith(prefix):
+        return False, ''
+
+    suffix = message[len(prefix):]
+    # I hate leading whitespace!
+    return True, suffix.lstrip()
 
 
 class Echo(BotAI):
