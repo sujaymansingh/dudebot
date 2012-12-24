@@ -2,6 +2,16 @@ import string
 from dudebot import ai
 
 
+class Ping(ai.BotAI):
+    """Respond to ping (and only ping) with pong."""
+
+    def respond(self, sender_nickname, message):
+        if message == 'ping':
+            return 'pong'
+        else:
+            return None
+
+
 class Echo(ai.BotAI):
     """Echos everything after the beginning 'echo'."""
 
