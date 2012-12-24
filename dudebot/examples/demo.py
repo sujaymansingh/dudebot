@@ -3,7 +3,7 @@ from dudebot import ai
 
 
 class Echo(ai.BotAI):
-    """Echos everything!"""
+    """Echos everything after the beginning 'echo'."""
 
     @ai.message_must_begin_with_prefix('echo')
     def respond(self, sender_nickname, message):
