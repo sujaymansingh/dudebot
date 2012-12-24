@@ -14,5 +14,6 @@ setup(
     install_requires=[
         'jabberbot==0.15',
         'xmpppy==0.5.0rc1',
+        'feedparser==5.1.3',
     ],
 )

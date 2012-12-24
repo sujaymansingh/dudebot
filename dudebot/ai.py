@@ -30,6 +30,25 @@ class message_must_begin_with_prefix(object):
         return wrapped_func
 
 
+class message_must_begin_with_attr(object):
+    """This decorator states that the bot AI will ignore all messages that
+    don't begin with the given attr of the botAI.
+    """
+
+    def __init__(self, attr_name):
+        self.attr_name = attr_name
+
+    def __call__(self, func):
+        def wrapped_func(botai, sender_nickname, message, *args, **kwargs):
+            prefix = getattr(botai, self.attr_name)
+            startswith, suffix = extract_suffix(message, prefix)
+            if startswith:
+                return func(botai, sender_nickname, suffix, *args, **kwargs)
+            else:
+                return None
+        return wrapped_func
+
+
 def message_must_begin_with_nickname(func):
     """A simple decorator so that a bot AI can ignore all messages that don't
     begin with the bot AI's nickname.
