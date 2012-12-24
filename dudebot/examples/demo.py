@@ -6,7 +6,7 @@ class Echo(ai.BotAI):
     """Echos everything!"""
 
     def respond(self, sender_nickname, message):
-        return True, message
+        return message
 
 
 class EchoOnlyIfAddressed(ai.BotAI):
@@ -14,7 +14,7 @@ class EchoOnlyIfAddressed(ai.BotAI):
 
     @ai.message_must_begin_with_nickname
     def respond(self, sender_nickname, message):
-        return True, message
+        return message
 
 
 class ROT13(ai.BotAI):
@@ -25,5 +25,5 @@ class ROT13(ai.BotAI):
             "ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz",
             "NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm"
         )
-        return True, string.translate(message, rot13)
+        return string.translate(message, rot13)
 

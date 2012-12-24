@@ -45,8 +45,8 @@ class JabberBot(jabberbot.JabberBot):
 
         for botAI in self.botais:
             response = botAI.respond(nickname, message)
-            if response != None and response[0] == True:
+            if response is not None:
                 # have a tiny pause for dramatic effect
                 time.sleep(0.5)
-                self.send_simple_reply(mess, response[1])
+                self.send_simple_reply(mess, response)
                 break

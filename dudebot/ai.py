@@ -7,7 +7,7 @@ class BotAI(object):
         pass
 
     def respond(self, sender_nickname, message):
-        return False, ''
+        return None
 
 
 class message_must_begin_with_prefix(object):
@@ -26,7 +26,7 @@ class message_must_begin_with_prefix(object):
             if startswith:
                 return func(botai, sender_nickname, suffix, *args, **kwargs)
             else:
-                return False, ''
+                return None
         return wrapped_func
 
 
@@ -39,7 +39,7 @@ def message_must_begin_with_nickname(func):
         if startswith:
             return func(botai, sender_nickname, suffix, *args, **kwargs)
         else:
-            return False, ''
+            return None
     return wrapped_func
 
 
