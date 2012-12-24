@@ -5,12 +5,13 @@ from dudebot import ai
 class Echo(ai.BotAI):
     """Echos everything!"""
 
+    @ai.message_must_begin_with_prefix('echo')
     def respond(self, sender_nickname, message):
         return message
 
 
-class EchoOnlyIfAddressed(ai.BotAI):
-    """Using the decorator, only echo if directly addressed."""
+class EchoToNickname(ai.BotAI):
+    """Using the decorator, only echo if directly by nickname."""
 
     @ai.message_must_begin_with_nickname
     def respond(self, sender_nickname, message):
