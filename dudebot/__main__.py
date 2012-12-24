@@ -17,7 +17,13 @@ if __name__ == '__main__':
 
     # Read the config file.
     with open(options.config_filename, 'r') as config_file:
-        config_data = json.load(config_file)
+        all_config_data = json.load(config_file)
+
+    # Have we been told to only look at a particular key?
+    if getattr(options, 'name') is None:
+        config_data = all_config_data
+    else:
+        config_data = all_config_data[options.name]
 
     # Grab all we need!
     username = config_data['username']
