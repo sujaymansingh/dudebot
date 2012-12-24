@@ -62,9 +62,3 @@ def extract_suffix(message, prefix):
     suffix = message[len(prefix):]
     # I hate leading whitespace!
     return True, suffix.lstrip()
-
-
-class Echo(BotAI):
-
-    def respond(self, sender_nickname, message):
-        return True, message
