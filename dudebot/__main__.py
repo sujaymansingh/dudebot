@@ -5,6 +5,7 @@ import sys
 import traceback
 from dudebot import jabber
 from dudebot import classutil
+from dudebot import core
 
 
 if __name__ == '__main__':
@@ -39,7 +40,9 @@ if __name__ == '__main__':
         logging.basicConfig(filename=config_data.logfile, mode='at+', level=logging.DEBUG)
 
     logging.info('about to start connecting')
-    connector = jabber.JabberBot(username, password, nickname)
+
+    connector_class = classutil.get_class(config_data['type'])
+    connector = connector_class(config_data)
 
     for botai in botais:
         # TODO!
@@ -54,6 +57,6 @@ if __name__ == '__main__':
         connector.join_room(chatroom, nickname)
 
     try:
-        connector.serve_forever()
+        connector.run_forever()
     except Exception as e:
         traceback.print_exc()

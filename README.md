@@ -63,7 +63,7 @@ I've used json for the config file format.
 An example (test.json)
 ```json
 {
-    "type": "jabber",
+    "type": "dudebot.jabber.JabberConnector",
     "username": "joeyjojo@example.com",
     "password": "junior-shabadoo",
     "nickname": "jeoyjojo",

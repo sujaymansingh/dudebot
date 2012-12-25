@@ -81,3 +81,35 @@ def extract_suffix(message, prefix):
     suffix = message[len(prefix):]
     # I hate leading whitespace!
     return True, suffix.lstrip()
+
+
+class ConnectorMount(type):
+    """This metaclass will ensure that any Connector classes defined can
+    found later.
+    """
+
+    def __init__(cls, name, bases, attrs):
+        if not hasattr(cls, 'connectors'):
+            cls.connectors = []
+        else:
+            cls.connectors.append(cls)
+
+
+class Connector(object):
+    """A basic chat type connector.
+    """
+
+    name = 'generic'
+
+    def __init__(self, config_data):
+        self.botais = []
+        self.nickname = config_data['nickname']
+
+    def add_botai(self, botai):
+        self.botais.append(botai)
+
+    def join_room(self, roomname, nickname):
+        pass
+
+    def run_forever(self):
+        pass

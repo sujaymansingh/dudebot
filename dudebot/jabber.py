@@ -1,23 +1,38 @@
 import re
 import time
 import jabberbot
+from dudebot import core
 
+
+class JabberConnector(core.Connector):
+
+    def __init__(self, config_data):
+        super(JabberConnector, self).__init__(config_data)
+        username = config_data['username']
+        password = config_data['password']
+        nickname = config_data['nickname']
+        self.jabber_bot = JabberBot(username, password, nickname, self)
+
+    def join_room(self, roomname, nickname):
+        self.jabber_bot.join_room(roomname, nickname)
+
+    def run_forever(self):
+        self.jabber_bot.serve_forever()
+
+        
 class JabberBot(jabberbot.JabberBot):
 
-    def __init__(self, username, password, nickname, *args, **kwargs):
+    def __init__(self, username, password, nickname, parent, *args, **kwargs):
         super(JabberBot, self).__init__(username, password, nickname, *args, **kwargs)
         self.nickname = nickname
-        self.botais = []
-
-    def add_botai(self, botAI):
-        self.botais.append(botAI)
+        self.parent = parent
 
     def callback_message(self, conn, mess):
         message = mess.getBody()
         if not message:
             return
 
-        if len(self.botais) == 0:
+        if len(self.parent.botais) == 0:
             return
 
         try:
@@ -43,7 +58,7 @@ class JabberBot(jabberbot.JabberBot):
 
         message = message.encode('ascii', 'ignore')
 
-        for botAI in self.botais:
+        for botAI in self.parent.botais:
             response = botAI.respond(nickname, message)
             if response is not None:
                 # have a tiny pause for dramatic effect
