@@ -1,8 +1,8 @@
 import string
-from dudebot import ai
+from dudebot import core
 
 
-class Ping(ai.BotAI):
+class Ping(core.BotAI):
     """Respond to ping (and only ping) with pong."""
 
     def respond(self, sender_nickname, message):
@@ -12,25 +12,25 @@ class Ping(ai.BotAI):
             return None
 
 
-class Echo(ai.BotAI):
+class Echo(core.BotAI):
     """Echos everything after the beginning 'echo'."""
 
-    @ai.message_must_begin_with_prefix('echo')
+    @core.message_must_begin_with_prefix('echo')
     def respond(self, sender_nickname, message):
         return message
 
 
-class EchoToNickname(ai.BotAI):
+class EchoToNickname(core.BotAI):
     """Using the decorator, only echo if directly by nickname."""
 
-    @ai.message_must_begin_with_nickname
+    @core.message_must_begin_with_nickname
     def respond(self, sender_nickname, message):
         return message
 
 
-class ROT13(ai.BotAI):
+class ROT13(core.BotAI):
 
-    @ai.message_must_begin_with_prefix('rot13')
+    @core.message_must_begin_with_prefix('rot13')
     def respond(self, sender_nickname, message):
         rot13 = string.maketrans(
             "ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz",

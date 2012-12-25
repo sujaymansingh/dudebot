@@ -3,15 +3,15 @@ import json
 import logging
 import urllib
 import urllib2
-from dudebot import ai
+from dudebot import core
 
-class GenericSearch(ai.BotAI):
+class GenericSearch(core.BotAI):
 
     def __init__(self, prefix=''):
         self.prefix = prefix
         self.clear_results()
 
-    @ai.message_must_begin_with_attr('prefix')
+    @core.message_must_begin_with_attr('prefix')
     def respond(self, sender, message):
         search_prefix = 'search '
         next_prefix   = 'next'

@@ -16,9 +16,9 @@ Overview
 --------
 
 ```python
-from dudebot import ai
+from dudebot import core
 
-class Ping(ai.BotAI):
+class Ping(core.BotAI):
     """Respond to ping (and only ping) with pong."""
 
     def respond(self, sender_nickname, message):
@@ -39,12 +39,12 @@ bot> pong
 There is also a utility decorator for if you want to only respond to messages
 that start with a given string.
 ```python
-from dudebot import ai
+from dudebot import core
 
-class Echo(ai.BotAI):
+class Echo(core.BotAI):
     """Echos everything after the beginning 'echo'."""
 
-    @ai.message_must_begin_with_prefix('echo')
+    @core.message_must_begin_with_prefix('echo')
     def respond(self, sender_nickname, message):
         return message
 ```
