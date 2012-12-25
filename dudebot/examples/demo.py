@@ -15,7 +15,7 @@ class Ping(core.BotAI):
 class Echo(core.BotAI):
     """Echos everything after the beginning 'echo'."""
 
-    @core.message_must_begin_with_prefix('echo')
+    @core.message_must_begin_with('echo')
     def respond(self, sender_nickname, message):
         return message
 
@@ -30,7 +30,7 @@ class EchoToNickname(core.BotAI):
 
 class ROT13(core.BotAI):
 
-    @core.message_must_begin_with_prefix('rot13')
+    @core.message_must_begin_with('rot13')
     def respond(self, sender_nickname, message):
         rot13 = string.maketrans(
             "ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz",

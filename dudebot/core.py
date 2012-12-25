@@ -10,7 +10,7 @@ class BotAI(object):
         return None
 
 
-class message_must_begin_with_prefix(object):
+class message_must_begin_with(object):
     """A simple decorator so that a bot AI can ignore all messages that don't
     begin with the given prefix.
     That way you can have your dude bot only respond to messages that, for

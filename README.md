@@ -44,7 +44,7 @@ from dudebot import core
 class Echo(core.BotAI):
     """Echos everything after the beginning 'echo'."""
 
-    @core.message_must_begin_with_prefix('echo')
+    @core.message_must_begin_with('echo')
     def respond(self, sender_nickname, message):
         return message
 ```
