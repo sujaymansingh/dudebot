@@ -5,7 +5,7 @@ setup(
     version='0.0.2',
     author='Sujay Mansingh',
     author_email='sujay.mansingh@gmail.com',
-    packages=['dudebot'],
+    packages=['dudebot', 'dudebot.examples'],
     scripts=[],
     url='https://github.com/sujaymansingh/dudebot',
     license='LICENSE.txt',
