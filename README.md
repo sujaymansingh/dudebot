@@ -8,7 +8,7 @@ Installation
 I'd strongly recommend using virtualenv (http://www.virtualenv.org).
 That way once you create and activate the virtual env, you can simply add install.
 ```bash
-pip install -e git+https://github.com/sujaymansingh/dudebot#egg=dudebot
+pip install git+https://github.com/sujaymansingh/dudebot.git
 ```
 
 
