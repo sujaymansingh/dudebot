@@ -27,8 +27,6 @@ if __name__ == '__main__':
         config_data = all_config_data[options.name]
 
     # Grab all we need!
-    username = config_data['username']
-    password = config_data['password']
     nickname = config_data['nickname']
     chatrooms = config_data['chatrooms']
     botais = config_data['botais']
