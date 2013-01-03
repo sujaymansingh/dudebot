@@ -43,9 +43,16 @@ if __name__ == '__main__':
     connector = connector_class(config_data)
 
     for botai in botais:
+        if isinstance(botai, str):
+            classname = botai
+            params = {}
+        else:
+            classname = botai[0]
+            params = botai[1]
+
         # TODO!
-        klass = classutil.get_class(botai)
-        botai_obj = klass()
+        klass = classutil.get_class(classname)
+        botai_obj = klass(params)
         botai_obj.initialise(None)
         botai_obj.set_nickname(nickname)
         connector.add_botai(botai_obj)

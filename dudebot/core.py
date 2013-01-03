@@ -1,5 +1,8 @@
 class BotAI(object):
 
+    def __init__(self, params):
+        pass
+
     def set_nickname(self, nickname):
         self.nickname = nickname
 

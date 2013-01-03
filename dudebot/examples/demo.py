@@ -38,3 +38,12 @@ class ROT13(core.BotAI):
         )
         return string.translate(message, rot13)
 
+
+class RespondToString(core.BotAI):
+
+    def __init__(self, params):
+        self.string = params['string']
+
+    def respond(self, sender_nickname, message):
+        if message == self.string:
+            return 'Hello'
