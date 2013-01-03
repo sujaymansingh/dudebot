@@ -6,6 +6,9 @@ setup(
     author='Sujay Mansingh',
     author_email='sujay.mansingh@gmail.com',
     packages=['dudebot', 'dudebot.examples'],
+    package_data={
+        'dudebot': ['README.md']
+    },
     scripts=[],
     url='https://github.com/sujaymansingh/dudebot',
     license='LICENSE.txt',
