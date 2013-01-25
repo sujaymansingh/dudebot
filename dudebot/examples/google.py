@@ -7,7 +7,8 @@ from dudebot import core
 
 class GenericSearch(core.BotAI):
 
-    def __init__(self, prefix=''):
+    def __init__(self, params, prefix=''):
+        super(GenericSearch, self).__init__(params)
         self.prefix = prefix
         self.clear_results()
 
@@ -86,8 +87,8 @@ class GoogleSearch(GenericSearch):
     def __str__(self):
         return 'GoogleSearch'
 
-    def __init__(self):
-        GenericSearch.__init__(self, 'goog.')
+    def __init__(self, params):
+        super(GoogleSearch, self).__init__(params, prefix='goog.')
 
     def do_actual_search(self, search_string):
         # Watch the IT-crowd to get this joke.
@@ -127,8 +128,8 @@ class YoutubeSearch(GenericSearch):
     def __str__(self):
         return 'YoutubeSearch'
 
-    def __init__(self):
-        GenericSearch.__init__(self, 'yt.')
+    def __init__(self, params):
+        super(YoutubeSearch, self).__init__(params, prefix='yt.')
 
     def do_actual_search(self, searchString):
         self.clear_results()

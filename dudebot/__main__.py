@@ -53,7 +53,6 @@ if __name__ == '__main__':
         # TODO!
         klass = classutil.get_class(classname)
         botai_obj = klass(params)
-        botai_obj.initialise(None)
         botai_obj.set_nickname(nickname)
         connector.add_botai(botai_obj)
 
