@@ -56,8 +56,6 @@ class JabberBot(jabberbot.JabberBot):
         if (nickname == self.nickname):
             return
 
-        message = message.encode('ascii', 'ignore')
-
         for botAI in self.parent.botais:
             response = botAI.respond(nickname, message)
             if response is not None:
