@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='dudebot',
-    version='0.0.3',
+    version='0.0.4',
     author='Sujay Mansingh',
     author_email='sujay.mansingh@gmail.com',
     packages=['dudebot', 'dudebot.examples'],
