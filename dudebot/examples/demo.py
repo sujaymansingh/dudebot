@@ -1,5 +1,7 @@
 import string
-from dudebot import core
+
+from .. import core
+from .. import decorators
 
 
 class Ping(core.BotAI):
@@ -15,7 +17,7 @@ class Ping(core.BotAI):
 class Echo(core.BotAI):
     """Echos everything after the beginning 'echo'."""
 
-    @core.message_must_begin_with('echo')
+    @decorators.message_must_begin_with('echo')
     def respond(self, sender_nickname, message):
         return message
 
@@ -23,14 +25,14 @@ class Echo(core.BotAI):
 class EchoToNickname(core.BotAI):
     """Using the decorator, only echo if directly by nickname."""
 
-    @core.message_must_begin_with_nickname
+    @decorators.message_must_begin_with_nickname
     def respond(self, sender_nickname, message):
         return message
 
 
 class ROT13(core.BotAI):
 
-    @core.message_must_begin_with('rot13')
+    @decorators.message_must_begin_with('rot13')
     def respond(self, sender_nickname, message):
         rot13 = string.maketrans(
             "ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz",
