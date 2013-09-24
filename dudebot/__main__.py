@@ -49,6 +49,7 @@ if __name__ == "__main__":
         connector = debug.SimulatedChatRoom(settings.NICKNAME, arguments.get("<nickname>"))
 
     for bot_ai in settings.BOT_AIS:
+        bot_ai.set_nickname(settings.NICKNAME)
         connector.add_botai(bot_ai)
 
     for chatroom in settings.CHATROOMS:
