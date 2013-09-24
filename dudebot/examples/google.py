@@ -3,7 +3,9 @@ import json
 import logging
 import urllib
 import urllib2
-from dudebot import core
+
+from .. import core
+from .. import decorators
 
 class GenericSearch(core.BotAI):
 
@@ -12,7 +14,7 @@ class GenericSearch(core.BotAI):
         self.prefix = prefix
         self.clear_results()
 
-    @core.message_must_begin_with_attr('prefix')
+    @decorators.message_must_begin_with_attr('prefix')
     def respond(self, sender, message):
         search_prefix = 'search '
         next_prefix   = 'next'
