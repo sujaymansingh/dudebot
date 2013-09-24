@@ -1,4 +1,4 @@
-from setuptools import setup
+import setuptools
 
 REQUIREMENTS = [
     "docopt==0.6.1",
@@ -8,12 +8,12 @@ REQUIREMENTS = [
 ]
 
 if __name__ == "__main__":
-    setup(
+    setuptools.setup(
         name="dudebot",
         version="0.0.5",
         author="Sujay Mansingh",
         author_email="sujay.mansingh@gmail.com",
-        packages=["dudebot", "dudebot.examples"],
+        packages=setuptools.find_packages(),
         package_data={
             "dudebot": ["README.md"]
         },
