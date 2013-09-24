@@ -6,15 +6,13 @@ from dudebot import core
 
 class JabberConnector(core.Connector):
 
-    def __init__(self, config_data):
-        super(JabberConnector, self).__init__(config_data)
-        username = config_data['username']
-        password = config_data['password']
-        nickname = config_data['nickname']
+    def __init__(self, username="", password="", nickname=""):
+        super(JabberConnector, self).__init__()
+        self.nickname = nickname
         self.jabber_bot = JabberBot(username, password, nickname, self)
 
-    def join_room(self, roomname, nickname):
-        self.jabber_bot.join_room(roomname, nickname)
+    def join_chatroom(self, roomname):
+        self.jabber_bot.join_room(roomname, self.nickname)
 
     def run_forever(self):
         self.jabber_bot.serve_forever()

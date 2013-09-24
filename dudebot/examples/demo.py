@@ -41,8 +41,8 @@ class ROT13(core.BotAI):
 
 class RespondToString(core.BotAI):
 
-    def __init__(self, params):
-        self.string = params['string']
+    def __init__(self, respond_to_string):
+        self.string = respond_to_string
 
     def respond(self, sender_nickname, message):
         if message == self.string:

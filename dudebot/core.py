@@ -1,6 +1,6 @@
 class BotAI(object):
 
-    def __init__(self, params):
+    def __init__(self):
         pass
 
     def set_nickname(self, nickname):
@@ -98,17 +98,15 @@ class ConnectorMount(type):
 class Connector(object):
     """A basic chat type connector.
     """
-
     name = 'generic'
 
-    def __init__(self, config_data):
+    def __init__(self):
         self.botais = []
-        self.nickname = config_data['nickname']
 
     def add_botai(self, botai):
         self.botais.append(botai)
 
-    def join_room(self, roomname, nickname):
+    def join_chatroom(self, roomname):
         pass
 
     def run_forever(self):
