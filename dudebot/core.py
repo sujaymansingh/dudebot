@@ -10,18 +10,6 @@ class BotAI(object):
         return None
 
 
-class ConnectorMount(type):
-    """This metaclass will ensure that any Connector classes defined can
-    found later.
-    """
-
-    def __init__(cls, name, bases, attrs):
-        if not hasattr(cls, 'connectors'):
-            cls.connectors = []
-        else:
-            cls.connectors.append(cls)
-
-
 class Connector(object):
     """A basic chat type connector.
     """
