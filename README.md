@@ -48,7 +48,7 @@ python -m dudebot run bots
 
 ## Responding by name
 
-The nickname of the sender is `sender\_nickname`.
+The nickname of the sender is `sender_nickname`.
 
 So add a new Bot AI to bots.py:
 ```python
@@ -81,7 +81,7 @@ class Echo(dudebot.BotAI):
         return message
 ```
 
-Add `Echo()` to `BOT\_AIS` and run again.
+Add `Echo()` to `BOT_AIS` and run again.
 
 Other decorators:
 ```python
@@ -130,7 +130,7 @@ chris>
 
 There are some examples defined in `dudebot.examples.google`
 
-Consider an example `google\_examples.py`:
+Consider an example `google_examples.py`:
 ```python
 import dudebot.examples.google
 
