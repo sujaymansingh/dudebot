@@ -1,6 +1,7 @@
 """
 Usage:
-    dudebot run-from-settings <settings-module>
+    dudebot run <settings-module>
+    dudebot debug <settings-module> with-fake-users <nickname>...
     dudebot (-h | --help)
 
 Options:
@@ -9,6 +10,7 @@ Options:
 import docopt
 
 import classutil
+import debug
 import jabber
 
 
@@ -34,23 +36,25 @@ def get_connector(settings):
 
 if __name__ == "__main__":
     arguments = docopt.docopt(__doc__, version="dudebot 0.5")
+    settings_module_name = arguments["<settings-module>"]
 
-    if arguments.get("run-from-settings"):
-        settings_module_name = arguments["<settings-module>"]
+    # Try to import this as a module.
+    #
+    settings = classutil.import_module(settings_module_name)
 
-        # Try to import this as a module.
-        #
-        settings = classutil.import_module(settings_module_name)
-
+    if arguments.get("run"):
         connector = get_connector(settings)
 
-        for bot_ai in settings.BOT_AIS:
-            connector.add_botai(bot_ai)
+    elif arguments.get("debug"):
+        connector = debug.SimulatedChatRoom(settings.NICKNAME, arguments.get("<nickname>"))
 
-        for chatroom in settings.CHATROOMS:
-            connector.join_chatroom(chatroom)
+    for bot_ai in settings.BOT_AIS:
+        connector.add_botai(bot_ai)
 
-        try:
-            connector.run_forever()
-        except KeyboardInterrupt:
-            pass
+    for chatroom in settings.CHATROOMS:
+        connector.join_chatroom(chatroom)
+
+    try:
+        connector.run_forever()
+    except KeyboardInterrupt:
+        pass

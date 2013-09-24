@@ -4,16 +4,16 @@ from dudebot import core
 
 class SimulatedChatRoom(core.Connector):
 
-    def __init__(self, config_data):
-        super(SimulatedChatRoom, self).__init__(config_data)
-        self.users = [config_data['nickname']]
-        if 'other_users' in config_data:
-            self.users.extend(config_data['other_users'])
+    def __init__(self, nickname, other_users):
+        super(SimulatedChatRoom, self).__init__()
+        self.nickname = nickname
+        self.users = [nickname]
+        self.users.extend(other_users)
         if len(self.users) < 2:
             raise NeedMoreUsers('Add users to the current_user key')
         self.current_user = self.users[1]
 
-    def join_room(self, chatroom, nickname):
+    def join_chatroom(self, chatroom):
         pass
 
     def run_forever(self):
@@ -45,7 +45,7 @@ class SimulatedChatRoom(core.Connector):
             for ai in self.botais:
                 response = ai.respond(sender, text)
                 if response is not None:
-                    response_text = '%s> %s' % (ai.nickname,response)
+                    response_text = '%s> %s' % (self.nickname,response)
                     self.output(response_text)
 
 
