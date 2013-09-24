@@ -10,7 +10,7 @@ REQUIREMENTS = [
 if __name__ == "__main__":
     setup(
         name="dudebot",
-        version="0.0.4",
+        version="0.0.5",
         author="Sujay Mansingh",
         author_email="sujay.mansingh@gmail.com",
         packages=["dudebot", "dudebot.examples"],

@@ -35,7 +35,7 @@ def get_connector(settings):
 
 
 if __name__ == "__main__":
-    arguments = docopt.docopt(__doc__, version="dudebot 0.5")
+    arguments = docopt.docopt(__doc__, version="dudebot 0.0.5")
     settings_module_name = arguments["<settings-module>"]
 
     # Try to import this as a module.
