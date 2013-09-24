@@ -1,9 +1,10 @@
 from setuptools import setup
 
 REQUIREMENTS = [
+    "docopt==0.6.1",
+    "feedparser==5.1.3",
     "jabberbot==0.15",
     "xmpppy==0.5.0rc1",
-    "feedparser==5.1.3",
 ]
 
 if __name__ == "__main__":
