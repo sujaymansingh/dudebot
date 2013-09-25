@@ -8,6 +8,8 @@ Options:
     -h --help          Show this screen.
 """
 import docopt
+import logging
+import sys
 
 import classutil
 import debug
@@ -42,6 +44,11 @@ if __name__ == "__main__":
     #
     settings = classutil.import_module(settings_module_name)
 
+    # Set up logging.
+    #
+    if getattr(settings, "LOGGING", "STDOUT") == "STDOUT":
+        logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+
     if arguments.get("run"):
         connector = get_connector(settings)
 
@@ -55,7 +62,8 @@ if __name__ == "__main__":
     for chatroom in settings.CHATROOMS:
         connector.join_chatroom(chatroom)
 
+    logging.info("Starting...")
     try:
         connector.run_forever()
     except KeyboardInterrupt:
-        pass
+        logging.info("Caught Ctrl-C")
