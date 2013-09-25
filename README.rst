@@ -8,7 +8,7 @@ I'd strongly recommend using virtualenv (http://www.virtualenv.org).
 That way once you create and activate the virtual env, you can simply
 add install.
 
-.. code:: bash
+.. code::
 
     pip install git+https://github.com/sujaymansingh/dudebot.git
 
@@ -19,7 +19,7 @@ Let us take an example file: ``bots.py``.
 
 We can add the following.
 
-.. code:: python
+.. code::
 
     import dudebot
 
@@ -33,7 +33,7 @@ This defines a Bot AI that will reply to any message of ``ping`` with
 
 Then simply add some connection details to ``bots.py``.
 
-.. code:: python
+.. code::
 
     NICKNAME = "<nickname of bot>"
 
@@ -49,7 +49,7 @@ Then simply add some connection details to ``bots.py``.
 Now you can run the dudebot with your filename (without the ``.py``
 extension).
 
-.. code:: bash
+.. code::
 
     python -m dudebot run bots
 
@@ -60,7 +60,7 @@ The nickname of the sender is ``sender_nickname``.
 
 So add a new Bot AI to bots.py:
 
-.. code:: python
+.. code::
 
     class Hello(dudebot.BotAI):
         def respond(self, sender_nickname, message):
@@ -81,7 +81,7 @@ Some useful decorators
 
 There are some decorators that can be used.
 
-.. code:: python
+.. code::
 
     class Echo(dudebot.BotAI):
         @dudebot.message_must_begin_with("echo")
@@ -97,7 +97,7 @@ Add ``Echo()`` to ``BOT_AIS`` and run again.
 
 Other decorators:
 
-.. code:: python
+.. code::
 
     class Attr(dudebot.BotAI):
         def __init__(self, secret_key="something"):
@@ -120,7 +120,7 @@ If you want to debug without actually connecting to a server, use the
 ``debug`` option. It will simulate a debug chatroom with some fake
 users. (The bot will also be in the chatroom of course.)
 
-.. code:: bash
+.. code::
 
     $ python -m dudebot debug bots with-fake-users ed mike chris james paul
     People in chatroom: ['bot', 'ed', 'mike', 'chris', 'james', 'paul']
@@ -146,7 +146,7 @@ There are some examples defined in ``dudebot.examples.google``
 
 Consider an example ``google_examples.py``:
 
-.. code:: python
+.. code::
 
     import dudebot.examples.google
 
@@ -165,7 +165,7 @@ Consider an example ``google_examples.py``:
 Google Search
 ~~~~~~~~~~~~~
 
-.. code:: bash
+.. code::
 
     $ python -m dudebot debug google with-fake-users matt
     People in chatroom: ['googlebot', 'matt']
@@ -188,7 +188,7 @@ Google Search
 Youtube Search
 ~~~~~~~~~~~~~~
 
-.. code:: bash
+.. code::
 
     $ python -m dudebot debug google with-fake-users matt
     People in chatroom: ['googlebot', 'matt']
