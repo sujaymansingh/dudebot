@@ -15,12 +15,12 @@ if __name__ == "__main__":
         author_email="sujay.mansingh@gmail.com",
         packages=setuptools.find_packages(),
         package_data={
-            "dudebot": ["README.md"]
+            "dudebot": ["README.rst"]
         },
         scripts=[],
         url="https://github.com/sujaymansingh/dudebot",
         license="LICENSE.txt",
         description="A really simple framework for chatroom bots",
-        long_description=open("README.md").read(),
+        long_description=open("README.rst").read(),
         install_requires=REQUIREMENTS
     )
