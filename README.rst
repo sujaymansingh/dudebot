@@ -6,11 +6,18 @@ Installation
 
 I'd strongly recommend using virtualenv (http://www.virtualenv.org).
 That way once you create and activate the virtual env, you can simply
-add install.
+ install it with pip.
 
 .. code::
 
     pip install git+https://github.com/sujaymansingh/dudebot.git
+
+or (from pypi)
+
+.. code::
+
+    pip install dudebot
+
 
 Basic usage
 -----------
