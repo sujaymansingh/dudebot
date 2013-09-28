@@ -21,6 +21,6 @@ if __name__ == "__main__":
         url="https://github.com/sujaymansingh/dudebot",
         license="LICENSE.txt",
         description="A really simple framework for chatroom bots",
-        long_description=open("README.rst").read(),
+        long_description="View the github page (https://github.com/sujaymansingh/dudebot) for more details.",
         install_requires=REQUIREMENTS
     )
