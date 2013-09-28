@@ -14,9 +14,6 @@ if __name__ == "__main__":
         author="Sujay Mansingh",
         author_email="sujay.mansingh@gmail.com",
         packages=setuptools.find_packages(),
-        package_data={
-            "dudebot": ["README.rst"]
-        },
         scripts=[],
         url="https://github.com/sujaymansingh/dudebot",
         license="LICENSE.txt",
