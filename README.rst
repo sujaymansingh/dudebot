@@ -6,11 +6,18 @@ Installation
 
 I'd strongly recommend using virtualenv (http://www.virtualenv.org).
 That way once you create and activate the virtual env, you can simply
-add install.
+ install it with pip.
 
 .. code::
 
     pip install git+https://github.com/sujaymansingh/dudebot.git
+
+or (from pypi)
+
+.. code::
+
+    pip install dudebot
+
 
 Basic usage
 -----------
@@ -99,16 +106,24 @@ Other decorators:
 
 .. code::
 
-    class Attr(dudebot.BotAI):
-        def __init__(self, secret_key="something"):
-            self.secret_key = secret_key
+    class READMEBot(core.BotAI):
+    
+        def __init__(self, prefix, readme_filename):
+            self.prefix = prefix
+            self.readme = open(readme_filename, "r+").read()
 
-        @dudebot.message_must_begin_with_attr("blah")
+        @dudebot.message_must_begin_with_attr("prefix")
         def respond(self, sender_nickname, message):
-            # We will only reach here if the message began with the value of
-            # self.secret_key (in this case 'something')
-            #
-            return "unlocked " + message
+            if message == "top":
+                return self.readme[:50]
+            elif message == "all":
+                return self.readme
+
+    # Now we can add multiple instances, and each instance will only respond to
+    # messages that begin with the value of its prefix attribute.
+    #
+    bot1 = READMEBot("git", "git/README.txt")
+    bot2 = READMEBot("svn", "svn/README.txt")
 
 Also, ``@dudebot.message_must_begin_with_nickname`` will make the bot AI
 only respond if the message began with the bot's nickname.
