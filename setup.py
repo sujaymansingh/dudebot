@@ -10,7 +10,7 @@ REQUIREMENTS = [
 if __name__ == "__main__":
     setuptools.setup(
         name="dudebot",
-        version="0.0.6",
+        version="0.0.7",
         author="Sujay Mansingh",
         author_email="sujay.mansingh@gmail.com",
         packages=setuptools.find_packages(),
