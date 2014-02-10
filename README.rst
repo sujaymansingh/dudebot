@@ -12,12 +12,6 @@ That way once you create and activate the virtual env, you can simply
 
     pip install git+https://github.com/sujaymansingh/dudebot.git
 
-or (from pypi)
-
-.. code::
-
-    pip install dudebot
-
 
 Basic usage
 -----------
