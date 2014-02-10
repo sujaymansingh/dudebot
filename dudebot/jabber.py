@@ -1,6 +1,7 @@
 import re
 import time
 import jabberbot
+import xmpp
 from dudebot import core
 
 
@@ -61,3 +62,21 @@ class JabberBot(jabberbot.JabberBot):
                 time.sleep(0.5)
                 self.send_simple_reply(mess, response)
                 break
+
+    def join_room(self, roomname, username=None, password=None):
+        """Overridden from JabberBot to provide history limiting.
+        """
+        ns_muc = 'http://jabber.org/protocol/muc'
+        if username is None:
+            username = self.username
+        room_jid = u'/'.join((roomname, username))
+        pres = xmpp.Presence(to=room_jid)
+        if password is not None:
+            pres.setTag('x', namespace=ns_muc).setTagData('password', password)
+        else:
+            pres.setTag('x', namespace=ns_muc)
+
+        # Don't pull the history back from the server on joining channel
+        #
+        pres.getTag('x').addChild('history', {'maxchars': '0', 'maxstanzas': '0'})
+        self.connect().send(pres)
