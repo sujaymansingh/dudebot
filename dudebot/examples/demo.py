@@ -8,8 +8,8 @@ class Ping(core.BotAI):
     """Respond to ping (and only ping) with pong."""
 
     def respond(self, sender_nickname, message):
-        if message == 'ping':
-            return 'pong'
+        if message == u"ping":
+            return u"pong"
         else:
             return None
 
@@ -35,8 +35,8 @@ class ROT13(core.BotAI):
     @decorators.message_must_begin_with('rot13')
     def respond(self, sender_nickname, message):
         rot13 = string.maketrans(
-            "ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz",
-            "NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm"
+            u"ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz",
+            u"NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm"
         )
         return string.translate(message, rot13)
 
@@ -48,4 +48,4 @@ class RespondToString(core.BotAI):
 
     def respond(self, sender_nickname, message):
         if message == self.string:
-            return 'Hello'
+            return u'Hello'

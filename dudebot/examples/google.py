@@ -16,9 +16,9 @@ class GenericSearch(core.BotAI):
 
     @decorators.message_must_begin_with_attr('prefix')
     def respond(self, sender, message):
-        search_prefix = 'search '
-        next_prefix   = 'next'
-        clear_prefix  = 'clear'
+        search_prefix = u"search "
+        next_prefix   = u"next"
+        clear_prefix  = u"clear"
 
         if message.startswith(search_prefix):
             # We've been asked to search for something.
@@ -30,11 +30,11 @@ class GenericSearch(core.BotAI):
                 # type in the '....next' command manually. Which is bogus.
                 result = self.next_result()
             except Exception as e:
-                logging.exception('Erroe fetching search result.')
-                return 'Something went wrong: %s' % (str(e))
+                logging.exception("Erroe fetching search result.")
+                return u"Something went wrong: {0}".format(e)
 
             if result == None:
-                return 'No results for %s' % (search_string)
+                return u"No results for {0}".format(search_string)
             else:
                 return result
 
@@ -42,14 +42,14 @@ class GenericSearch(core.BotAI):
             # Grab the next result.
             result = self.next_result()
             if result == None:
-                return 'No more results'
+                return u"No more results"
             else:
                 return result
 
         elif message.startswith(clear_prefix):
             # Clear all results.
             self.clear_results()
-            return 'Results discarded.'
+            return u"Results discarded."
 
         else:
             return None
@@ -63,7 +63,7 @@ class GenericSearch(core.BotAI):
             return None
         result = self.results[self.index]
         self.index += 1
-        return '%d of %d\n%s' % (self.index, len(self.results), str(result))
+        return u"{0} of {1}\n{2}".format(self.index, len(self.results), result)
 
     def search(self, searchString):
         self.clear_results()
@@ -78,35 +78,35 @@ class GenericSearch(core.BotAI):
 class GoogleResult(object):
 
     def __init__(self, raw_result):
-        self.url = raw_result['url']
-        self.title_no_formatting = raw_result['titleNoFormatting']
+        self.url = raw_result[u"url"]
+        self.title_no_formatting = raw_result[u"titleNoFormatting"]
 
     def __str__(self):
-        return '%s %s' % (self.url, self.title_no_formatting)
+        return u"{0} {1}".format(self.url, self.title_no_formatting)
 
 
 class GoogleSearch(GenericSearch):
     def __str__(self):
-        return 'GoogleSearch'
+        return u"GoogleSearch"
 
     def __init__(self):
-        super(GoogleSearch, self).__init__(prefix='goog.')
+        super(GoogleSearch, self).__init__(prefix=u"goog.")
 
     def do_actual_search(self, search_string):
         # Watch the IT-crowd to get this joke.
-        if search_string.strip().lower() == 'google':
-            raise Exception('Erroe: infinite recursion. Internets have been broken.')
+        if search_string.strip().lower() == u"google":
+            raise Exception(u"Erroe: infinite recursion. Internets have been broken.")
 
         # Hit the google api.
-        url = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&'
-        url += urllib.urlencode({'q': search_string})
+        url = u"http://ajax.googleapis.com/ajax/services/search/web?v=1.0&"
+        url += urllib.urlencode({u"q": search_string.encode("utf-8")})
         response = urllib2.urlopen(url)
 
         # Extract the results.
         data = json.loads(response.read())
         google_results = []
 
-        raw_results = data['responseData']['results']
+        raw_results = data[u"responseData"][u"results"]
         for raw_result in raw_results:
             google_results.append(GoogleResult(raw_result))
         return google_results
@@ -122,21 +122,21 @@ class YoutubeResult(object):
         self.title = raw_result.title
 
     def __str__(self):
-        return '%s %s' % (self.link, self.title)
+        return u"{0} {1}".format(self.link, self.title)
 
 
 class YoutubeSearch(GenericSearch):
 
     def __str__(self):
-        return 'YoutubeSearch'
+        return u"YoutubeSearch"
 
     def __init__(self):
-        super(YoutubeSearch, self).__init__(prefix='yt.')
+        super(YoutubeSearch, self).__init__(prefix=u"yt.")
 
     def do_actual_search(self, searchString):
         self.clear_results()
-        url = 'http://gdata.youtube.com/feeds/api/videos?'
-        url += urllib.urlencode({'q': searchString})
+        url = u"http://gdata.youtube.com/feeds/api/videos?"
+        url += urllib.urlencode({u"q": searchString.encode("utf-8")})
         resp = feedparser.parse(url)
         entries = resp.entries
 

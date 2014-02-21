@@ -7,7 +7,7 @@ from dudebot import core
 
 class JabberConnector(core.Connector):
 
-    def __init__(self, username="", password="", nickname=""):
+    def __init__(self, username=u"", password=u"", nickname=u""):
         super(JabberConnector, self).__init__()
         self.nickname = nickname
         self.jabber_bot = JabberBot(username, password, nickname, self)
@@ -35,7 +35,7 @@ class JabberBot(jabberbot.JabberBot):
             return
 
         try:
-            messtime = time.mktime(time.strptime(mess.getTimestamp(), '%Y%m%dT%H:%M:%S'))
+            messtime = time.mktime(time.strptime(mess.getTimestamp(), u"%Y%m%dT%H:%M:%S"))
             currtime = time.time()
             if (messtime < (currtime - 1)):
                 return
@@ -45,7 +45,7 @@ class JabberBot(jabberbot.JabberBot):
             pass
 
         sender = "%s" % mess.getFrom()
-        prog = re.compile('.*@.*/(.*)$')
+        prog = re.compile(u".*@.*/(.*)$")
         result = prog.match(sender)
         if not result:
             return
@@ -66,17 +66,17 @@ class JabberBot(jabberbot.JabberBot):
     def join_room(self, roomname, username=None, password=None):
         """Overridden from JabberBot to provide history limiting.
         """
-        ns_muc = 'http://jabber.org/protocol/muc'
+        ns_muc = u"http://jabber.org/protocol/muc"
         if username is None:
             username = self.username
-        room_jid = u'/'.join((roomname, username))
+        room_jid = u"/".join((roomname, username))
         pres = xmpp.Presence(to=room_jid)
         if password is not None:
-            pres.setTag('x', namespace=ns_muc).setTagData('password', password)
+            pres.setTag(u"x", namespace=ns_muc).setTagData(u"password", password)
         else:
-            pres.setTag('x', namespace=ns_muc)
+            pres.setTag(u"x", namespace=ns_muc)
 
         # Don't pull the history back from the server on joining channel
         #
-        pres.getTag('x').addChild('history', {'maxchars': '0', 'maxstanzas': '0'})
+        pres.getTag(u"x").addChild(u"history", {u"maxchars": u"0", u"maxstanzas": u"0"})
         self.connect().send(pres)
