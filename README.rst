@@ -148,6 +148,28 @@ users. (The bot will also be in the chatroom of course.)
     bot> hello chris
     chris>
 
+Examples
+--------
+
+SedBot
+~~~~~~
+
+Add ``dudebot.examples.sedbot.SedBot()`` to your settings.
+
+.. code::
+
+    $ python -m dudebot debug bots with-fake-users u1 u2
+    INFO:root:Starting...
+    People in chatroom: ['Dude Bot', 'u1', 'u2']
+    /changeto nickname <- Changes to given nickname
+    Otherwise, just type to chat
+    (Hit enter after each line!)
+    u1> I have to catch a tain
+    u1> s/tain/train
+    Dude Bot> What u1 meant to say was: I have to catch a train
+    u1>
+
+
 Google Examples
 ---------------
 
